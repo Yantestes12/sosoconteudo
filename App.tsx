@@ -108,8 +108,6 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-zinc-950 text-zinc-200 pb-10 relative select-none">
       <ProfileHeader 
         profile={profileData} 
-        showModal={showPaymentModal}
-        setShowModal={setShowPaymentModal}
         isVip={isVip}
         onPurchase={() => setShowPaymentModal(true)}
       />

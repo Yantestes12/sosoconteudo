@@ -1,17 +1,14 @@
-
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { CreatorProfile } from '../types';
-import { MapPin, BadgeCheck, Gem, X, Lock } from './Icons';
+import { MapPin, BadgeCheck, Gem, Lock } from './Icons';
 
 interface ProfileHeaderProps {
   profile: CreatorProfile;
-  showModal: boolean;
-  setShowModal: (show: boolean) => void;
   isVip: boolean;
   onPurchase: () => void;
 }
 
-const ProfileHeader: React.FC<ProfileHeaderProps> = ({ profile, isVip }) => {
+const ProfileHeader: React.FC<ProfileHeaderProps> = ({ profile, isVip, onPurchase }) => {
   return (
     <div className="relative mb-2">
       <div className="absolute top-4 right-4 z-30">
