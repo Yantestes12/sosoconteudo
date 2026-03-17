@@ -12,6 +12,7 @@ import LeakAdCard from './components/LeakAdCard';
 import PaymentModal from './components/PaymentModal';
 import { TabType, CreatorProfile } from './types';
 import { supabase } from './lib/supabase';
+
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabType>('feed');
   // VIP bloqueado por padrão

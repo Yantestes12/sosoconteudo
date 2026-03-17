@@ -7,8 +7,16 @@ interface PhotoGridProps {
   isVip: boolean;
 }
 
+interface PhotoItem {
+  id: number;
+  url: string;
+  isLocked: boolean;
+  likes: number;
+  caption: string;
+}
+
 const PhotoGrid: React.FC<PhotoGridProps> = ({ onOpenSubscription, isVip }) => {
-  const [selectedPhoto, setSelectedPhoto] = useState<any>(null);
+  const [selectedPhoto, setSelectedPhoto] = useState<PhotoItem | null>(null);
 
   const photos = Array.from({ length: 48 }).map((_, i) => ({
     id: i,
@@ -19,7 +27,7 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({ onOpenSubscription, isVip }) => {
     caption: `Set Sofia Oliveira #${i + 1}`
   }));
 
-  const handlePhotoClick = (photo: any) => {
+  const handlePhotoClick = (photo: PhotoItem) => {
     const locked = photo.isLocked && !isVip;
     if (locked) {
       onOpenSubscription();
@@ -82,7 +90,7 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({ onOpenSubscription, isVip }) => {
             onClick={() => setSelectedPhoto(null)}
         >
           <button className="absolute top-6 right-6 z-[110] text-white bg-white/10 p-3 rounded-full hover:bg-white/20 transition-colors"><X size={24}/></button>
-          <div className="relative max-h-screen max-w-5xl" onClick={(e) => e.stopPropagation()}>
+          <div className="relative max-h-screen max-w-5xl" onClick={(e: React.MouseEvent) => e.stopPropagation()}>
              {/* Overlay de Proteção no Modal */}
              <div className="absolute inset-0 z-10 bg-transparent"></div>
              

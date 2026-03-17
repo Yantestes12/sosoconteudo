@@ -7,8 +7,18 @@ interface VideoGalleryProps {
   isVip: boolean;
 }
 
+interface VideoItem {
+  id: number;
+  title: string;
+  url: string;
+  thumbnail: string;
+  duration: string;
+  views: string;
+  locked: boolean;
+}
+
 const VideoGallery: React.FC<VideoGalleryProps> = ({ onOpenSubscription, isVip }) => {
-  const [selectedVideo, setSelectedVideo] = useState<any>(null);
+  const [selectedVideo, setSelectedVideo] = useState<VideoItem | null>(null);
 
   const videoTitles = [
     "Gemendo alto no chuveiro 🚿", "Teste de flexibilidade na cama 🤸‍♀️", "POV: Sou sua vizinha safada 🚪",
@@ -31,7 +41,7 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ onOpenSubscription, isVip }
     locked: (i % 2 !== 0) || (i > 15 && i % 3 === 0)
   }));
 
-  const handleVideoClick = (video: any) => {
+  const handleVideoClick = (video: VideoItem) => {
     const isLocked = video.locked && !isVip;
     if (isLocked) {
       onOpenSubscription();
@@ -106,7 +116,7 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ onOpenSubscription, isVip }
       {selectedVideo && (
         <div className="fixed inset-0 w-screen h-screen z-[100] bg-black/95 flex items-center justify-center p-4 animate-fade-in backdrop-blur-sm" onClick={() => setSelectedVideo(null)}>
           <button className="absolute top-6 right-6 z-50 text-white bg-white/10 p-3 rounded-full hover:bg-white/20 transition-colors"><X size={24} /></button>
-          <div className="w-full max-w-6xl max-h-screen relative flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
+          <div className="w-full max-w-6xl max-h-screen relative flex flex-col items-center" onClick={(e: React.MouseEvent) => e.stopPropagation()}>
              <video 
                src={selectedVideo.url} 
                controls 
