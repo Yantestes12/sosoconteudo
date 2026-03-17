@@ -120,11 +120,11 @@ const App: React.FC = () => {
 
       <Navigation 
         activeTab={activeTab} 
-        setActiveTab={(tab) => {
+        setActiveTab={(tab: TabType | 'vazados') => {
           if (tab === 'vazados') {
             setShowLeakPortal(true);
           } else {
-            setActiveTab(tab);
+            setActiveTab(tab as TabType);
           }
         }} 
       />
